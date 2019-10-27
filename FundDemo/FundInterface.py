@@ -2,6 +2,7 @@ import tkinter as tk
 from time import strftime
 from csv_file_mod import write_file
 from datetime import datetime
+from PIL import Image, ImageTk
 
 
 # This class is the child class of tk.Frame
@@ -47,8 +48,8 @@ class FundInterface(tk.Frame):
 
         # Images
         # Donut Initialization
-        self.img = tk.PhotoImage(file="donut_clipart.png")
-        self.canva = tk.Canvas(self.master, width=10, height=10)
+        self.img = Image.open("donut_cut.png")
+        self.img = self.img.resize((170, 170), Image.ANTIALIAS)
 
         self.create_widgets()
         self.time_clock()
@@ -99,9 +100,12 @@ class FundInterface(tk.Frame):
                            font=("8514oem", 10)).grid(row=11+i, column=0, sticky=tk.W)
         self.location.set(self.location_list[0][1])
 
-        # Image Canvas
-        self.canva.grid(row=10, column=1, columnspan=5, rowspan=5, sticky=tk.NW)
-        self.canva.create_image(0, 0, image=self.img)
+        # Image Test
+        self.img = ImageTk.PhotoImage(self.img)
+        tk.Label(self.master,
+                 image=self.img,
+                 width=0,
+                 height=0).grid(row=10, column=1, columnspan=4, rowspan=5, sticky=tk.W)
 
 
         # Submit Button which runs the save_inputs function
