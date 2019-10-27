@@ -49,7 +49,7 @@ class FundInterface(tk.Frame):
         # Images
         # Donut Initialization
         self.img = Image.open("donut_cut.png")
-        self.img = self.img.resize((170, 170), Image.ANTIALIAS)
+        self.img = self.img.resize((120, 120), Image.ANTIALIAS)
 
         self.create_widgets()
         self.time_clock()
@@ -105,7 +105,7 @@ class FundInterface(tk.Frame):
         tk.Label(self.master,
                  image=self.img,
                  width=0,
-                 height=0).grid(row=10, column=1, columnspan=4, rowspan=5, sticky=tk.W)
+                 height=0).grid(row=11, column=1, columnspan=6, rowspan=5, sticky=tk.NW)
 
 
         # Submit Button which runs the save_inputs function
